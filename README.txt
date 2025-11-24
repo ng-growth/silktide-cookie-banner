@@ -16,19 +16,19 @@ silktideCookieBannerManager.updateCookieBannerConfig({
   },
   cookieTypes: [
     {
-      id: "necessary",
-      name: "Necessary",
-      description: "<p>These cookies are necessary for the website to function properly and cannot be switched off. They help with things like logging in and setting your privacy preferences.</p>",
+      id: "essential_cookies",
+      name: "Essential cookies",
+      description: "<p>These cookies are necessary for our website to function properly and cannot be disabled. They enable core functions such as page navigation, access to secure areas, form submissions, and storing your cookie preferences.</p>",
       required: true,
       onAccept: function() {
-        console.log('Add logic for the required Necessary here');
+        console.log('Add logic for the required Essential cookies here');
       }
     },
     {
       id: "analytics",
       name: "Analytics",
-      description: "<p>These cookies help us improve the site by tracking which pages are most popular and how visitors move around the site.</p>",
-      defaultValue: true,
+      description: "<p>We use Google Analytics to understand how visitors interact with our website. These cookies help us analyze page views, user behavior, and traffic sources. IP anonymization is enabled to protect your privacy. Provider: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland.</p>",
+      required: false,
       onAccept: function() {
         gtag('consent', 'update', {
           analytics_storage: 'granted',
@@ -44,9 +44,10 @@ silktideCookieBannerManager.updateCookieBannerConfig({
       }
     },
     {
-      id: "advertising",
-      name: "Advertising",
-      description: "<p>These cookies provide extra features and personalization to improve your experience. They may be set by us or by partners whose services we use.</p>",
+      id: "advertising_marketing",
+      name: "Advertising &amp; Marketing",
+      description: "<p>These cookies are used to deliver personalized ads and to measure the effectiveness of advertising campaigns. They support platforms such as Google Ads, Facebook/Instagram (Meta Pixel), and TikTok. Providers include Google Ireland Limited, Meta Platforms Ireland Ltd., and TikTok Technology Limited.</p>",
+      required: false,
       onAccept: function() {
         gtag('consent', 'update', {
           ad_storage: 'granted',
@@ -54,7 +55,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
           ad_personalization: 'granted',
         });
         dataLayer.push({
-          'event': 'consent_accepted_advertising',
+          'event': 'consent_accepted_advertising_marketing',
         });
       },
       onReject: function() {
@@ -63,6 +64,18 @@ silktideCookieBannerManager.updateCookieBannerConfig({
           ad_user_data: 'denied',
           ad_personalization: 'denied',
         });
+      }
+    },
+    {
+      id: "functional",
+      name: "Functional",
+      description: "These cookies enable additional functionality and help ensure a consistent user experience. For example, services like Google Fonts may load fonts directly from Google servers to display text properly across devices.",
+      required: false,
+      onAccept: function() {
+        console.log('Add accept logic for Functional');
+      },
+      onReject: function() {
+        console.log('Add reject logic for Functional');
       }
     }
   ],
@@ -79,8 +92,8 @@ silktideCookieBannerManager.updateCookieBannerConfig({
     preferences: {
       title: "Customize your cookie preferences",
       description: "<p>We respect your right to privacy. You can choose not to allow some types of cookies. Your cookie preferences will apply across our website.</p>",
-      creditLinkText: "Get this banner for free",
-      creditLinkAccessibleLabel: "Get this banner for free"
+      creditLinkText: "",
+      creditLinkAccessibleLabel: ""
     }
   }
 });
